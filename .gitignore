@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+local.properties
+build/
+**/build/
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Release credentials and generated packages must never be committed.
+*.jks
+*.keystore
+keystore.properties
+*.apk
+*.aab
+dist/
