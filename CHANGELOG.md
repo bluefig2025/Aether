@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0-beta.2
+
+- Added Material You dynamic color from the user's Android system theme.
+- Updated compile and target support for Android 17 (API 37).
+- Added just-in-time Android 17 local-network permission handling for private addresses.
+- Preserved the Aether color palette as a fallback on pre-Android 12 devices.
+
 ## 1.0.0-beta.1
 
 - Added adaptive phone, tablet, expanded, and desktop browser layouts.

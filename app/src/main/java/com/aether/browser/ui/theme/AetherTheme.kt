@@ -1,11 +1,15 @@
 package com.aether.browser.ui.theme
 
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 
 private val LightColors = lightColorScheme(
     primary = Color(0xFF315FAF),
@@ -33,8 +37,15 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun AetherTheme(content: @Composable () -> Unit) {
-    // A consistent palette gives browser chrome its own identity across phones, tablets, and
-    // desktop environments while still following the system light/dark preference.
-    val colors = if (isSystemInDarkTheme()) DarkColors else LightColors
+    val darkTheme = isSystemInDarkTheme()
+    val context = LocalContext.current
+    // Material You derives the app palette from the user's Android wallpaper on Android 12+.
+    // Older devices retain Aether's blue palette while still following light/dark mode.
+    val colors = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && darkTheme -> dynamicDarkColorScheme(context)
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> dynamicLightColorScheme(context)
+        darkTheme -> DarkColors
+        else -> LightColors
+    }
     MaterialTheme(colorScheme = colors, content = content)
 }

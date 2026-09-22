@@ -21,7 +21,10 @@ import com.aether.browser.ui.theme.AetherTheme
 private enum class AppSurface { BROWSER, TABS, SETTINGS }
 
 @Composable
-fun AetherApp(viewModel: BrowserViewModel) {
+fun AetherApp(
+    viewModel: BrowserViewModel,
+    onNavigate: (String) -> Unit = viewModel::navigate,
+) {
     val state by viewModel.browserState.collectAsStateWithLifecycle()
     val interfaceMode by viewModel.interfaceMode.collectAsStateWithLifecycle()
     // This is the current activity window width, so freeform desktop resizing updates the UI.
@@ -67,7 +70,7 @@ fun AetherApp(viewModel: BrowserViewModel) {
                     session = viewModel.selectedSession(),
                     commands = viewModel.commands,
                     layoutMode = layoutMode,
-                    onNavigate = viewModel::navigate,
+                    onNavigate = onNavigate,
                     onBack = viewModel::back,
                     onForward = viewModel::forward,
                     onReload = viewModel::reload,
@@ -85,7 +88,7 @@ fun AetherApp(viewModel: BrowserViewModel) {
                     state = state,
                     session = viewModel.selectedSession(),
                     commands = viewModel.commands,
-                    onNavigate = viewModel::navigate,
+                    onNavigate = onNavigate,
                     onBack = viewModel::back,
                     onForward = viewModel::forward,
                     onReload = viewModel::reload,
@@ -103,7 +106,7 @@ fun AetherApp(viewModel: BrowserViewModel) {
                     session = viewModel.selectedSession(),
                     commands = viewModel.commands,
                     layoutMode = layoutMode,
-                    onNavigate = viewModel::navigate,
+                    onNavigate = onNavigate,
                     onBack = viewModel::back,
                     onForward = viewModel::forward,
                     onReload = viewModel::reload,

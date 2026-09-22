@@ -11,10 +11,10 @@ android {
     defaultConfig {
         applicationId = "com.aether.browser"
         minSdk = 26
-        // Keep runtime behavior on Android 16 while compiling GeckoView against the newer APIs.
-        targetSdk = 36
-        versionCode = 100001
-        versionName = "1.0.0-beta.1"
+        // Opt in to Android 17 behavior, privacy, security, and adaptive-window requirements.
+        targetSdk = 37
+        versionCode = 100002
+        versionName = "1.0.0-beta.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
